@@ -5,5 +5,8 @@
   "workspaces": [ "plugins/*" ],
   "repository": "https://github.com/kenblikylee/vxp-plugin-vue-admin.git",
   "author": "kenblikylee <kenblikylee@126.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "vxp": "^1.0.0-alpha"
+  }
 }
