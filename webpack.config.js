@@ -1,6 +1,9 @@
+const htmlPlugin = require("html-webpack-plugin");
+const cleanPlugin = require("clean-webpack-plugin").CleanWebpackPlugin;
+
 module.exports = {
-  mode: "production",
-  devtool: "source-map",
+  mode: "development",
+  devtool: "source-map-inline",
   output: {
     filename: "index.js"
   },
@@ -9,8 +12,27 @@ module.exports = {
       {
         test: /\.js$/i,
         exclude: /node_modules/,
-        loader: "babel-loader"
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                ['@babel/env', {
+                  corejs: 3,
+                  useBuiltIns: "entry"
+                }], 
+                ['@vue/jsx']
+              ]
+            }
+          }
+        ]
       }
     ]
-  }
+  },
+  plugins: [
+    new cleanPlugin(),
+    new htmlPlugin({
+      template: "public/index.html"
+    })
+  ]
 }
